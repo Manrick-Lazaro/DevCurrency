@@ -3,10 +3,11 @@ import { createBrowserRouter, Outlet } from "react-router-dom";
 import { Home } from './pages/home';
 import { Detail } from "./pages/detail";
 import { NotFound } from "./pages/notFound";
+import { Layout } from "./components/layout";
 
 const router = createBrowserRouter([
   {
-    element: <Outlet />,
+    element: <Layout />,
     children: [
       {
         path: '/',
