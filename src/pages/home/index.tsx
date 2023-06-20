@@ -1,7 +1,11 @@
+import { Search } from "../../components/search"
+import { Table } from "../../components/table"
+
 export function Home() {
   return(
     <div>
-      <h1>home page</h1>
+      <Search />
+      <Table />
     </div>
   )
 }
