@@ -38,11 +38,11 @@ td:last-child{
   color: #BBB;
 }
 
-.columnTableBodyProfit{
+.profit{
   color: #12f98a;
 }
 
-.columnTableBodyLoss{
+.loss{
   color: #f91257;
 }
 

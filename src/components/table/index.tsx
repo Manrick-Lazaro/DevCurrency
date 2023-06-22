@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 interface CoinProps {
   symbol: string, 
   show_symbol: boolean,
-  delta_24: string,
+  delta_24h: string,
   volume_24: string,
   market_cap: string,
   name: string,
@@ -61,22 +61,24 @@ export function Table() {
           </tr>
         </thead>
         <tbody className={styles.tableBody}>
-          <tr className={styles.lineTableBody}>
-            <td className={styles.columnTableBody} data-label='Moeda'>
-              <Link to='' className={styles.link}>
-                <span>Bitcoin</span> | BTC
-              </Link>
-            </td>
-            <td className={styles.columnTableBody} data-label='Mercado'>
-              R$ 5000.00
-            </td>
-            <td className={styles.columnTableBody} data-label='Preço'>
-              R$ 20
-            </td>
-            <td className={styles.columnTableBodyProfit} data-label='Volume'>
-              <span>-5.3</span>
-            </td>
-          </tr>
+          {coins.map(item => (
+            <tr key={item.name} className={styles.lineTableBody}>
+              <td className={styles.columnTableBody} data-label='Moeda'>
+                <Link to={`/detail/${item.symbol}`} className={styles.link}>
+                  <span>{ item.name }</span> | { item.symbol }
+                </Link>
+              </td>
+              <td className={styles.columnTableBody} data-label='Mercado'>
+                { item.formatedMarket }
+              </td>
+              <td className={styles.columnTableBody} data-label='Preço'>
+                { item.formatedPrice }
+              </td>
+              <td className={Number(item.delta_24h) >= 0 ? styles.profito : styles.loss} data-label='Volume'>
+                <span>{ item.delta_24h }</span>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
