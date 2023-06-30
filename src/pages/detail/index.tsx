@@ -1,5 +1,5 @@
 import { Loader } from '../../components/loader';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import styles from './detail.module.css';
 
@@ -23,6 +23,7 @@ export function Detail() {
   const { cripto } = useParams();
   const [coinDetail, setCoinDetail] = useState<CoinProp>()
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     function getCoin() {
@@ -33,6 +34,10 @@ export function Detail() {
           style: 'currency',
           currency: 'BRL'
         })
+
+        if(data.error) {
+          navigate("/")
+        }
 
         const resultData = {
           ...data,
