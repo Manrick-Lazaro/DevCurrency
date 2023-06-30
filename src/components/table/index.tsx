@@ -1,6 +1,7 @@
 import styles from './table.module.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Loader } from '../loader';
 
 interface CoinProps {
   symbol: string, 
@@ -21,6 +22,7 @@ interface DataProps {
 
 export function Table() {
   const [coins, setCoins] = useState<CoinProps[]>([]);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     function getData(){
@@ -44,11 +46,18 @@ export function Table() {
         })
         
         setCoins(formatedResult)
+        setLoading(false)
       })
     }
     getData();
   }, [])
   
+  if(loading) {
+    return (
+      <Loader />
+    )
+  }
+
   return(
     <div className={styles.container}>
       <table className={styles.table}>
@@ -74,7 +83,7 @@ export function Table() {
               <td className={styles.columnTableBody} data-label='Preço'>
                 { item.formatedPrice }
               </td>
-              <td className={Number(item.delta_24h) >= 0 ? styles.profito : styles.loss} data-label='Volume'>
+              <td className={(item.delta_24h) <= "0" ? styles.loss : styles.profit} data-label='Volume'>
                 <span>{ item.delta_24h }</span>
               </td>
             </tr>
