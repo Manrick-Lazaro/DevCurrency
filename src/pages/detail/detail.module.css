@@ -1,0 +1,33 @@
+.container{
+  padding: 0px 14px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.information_coin {
+  background-color: #121212;
+  min-width: 500px;
+  margin: 34px auto;
+  padding: 24px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 20px #0000007c;
+}
+
+.information_coin p {
+  display: flex;
+  justify-content: space-between;
+}
+
+.information_coin p:not(:last-of-type){
+  margin-bottom: 10px;
+}
+
+.profit {
+  color: #12f98a;
+}
+
+.loss {
+  color: #f91257;
+}
