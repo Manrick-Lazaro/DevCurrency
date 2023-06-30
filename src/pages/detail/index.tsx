@@ -4,18 +4,18 @@ import { useEffect, useState } from 'react';
 import styles from './detail.module.css';
 
 interface CoinProp {
-  symbol: string,
-  name: string,
-  price: string,
-  market_cap: string,
-  low_24h: string,
-  high_24h: string, 
-  total_volume_24h: string,
-  delta_24h: string,
-  formatedPrice: string,
-  formatedMarket: string,
-  formatedLowprice: string,
-  formatedHighprice: string,
+  symbol: string;
+  name: string;
+  price: string;
+  market_cap: string;
+  low_24h: string;
+  high_24h: string; 
+  total_volume_24h: string;
+  delta_24h: string;
+  formatedPrice: string;
+  formatedMarket: string;
+  formatedLowprice: string;
+  formatedHighprice: string;
   error?: string
 }
 
@@ -30,14 +30,16 @@ export function Detail() {
       fetch(`https://sujeitoprogramador.com/api-cripto/coin/?key=0125db9f210b2f19&symbol=${cripto}`)
       .then(response => response.json())
       .then((data:CoinProp) => {
+        
+        if(data.error) {
+          navigate("/")
+          console.log("erro aqui ")
+        }
+        
         const price = Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL'
         })
-
-        if(data.error) {
-          navigate("/")
-        }
 
         const resultData = {
           ...data,
